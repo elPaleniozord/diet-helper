@@ -4,16 +4,16 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 const IndexPage: NextPage = () => {
   const [session, loading] = useSession();
-
+  console.log(session)
   if(loading) {
     return <div>Loading ...</div>
   }
   if(session) {
     return (
-      <div>
+      <main>
         Hello, {session.user.email ?? session.user.name}
         <button onClick={()=>signOut()}>Sign Out</button>
-      </div>
+      </main>
     )
   } else {
     return (

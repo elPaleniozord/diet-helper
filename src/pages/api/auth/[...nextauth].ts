@@ -5,21 +5,28 @@ import Adapters from 'next-auth/adapters'
 import { NextApiHandler } from 'next'
 import { PrismaClient } from '@prisma/client'
 
+import sendVerificationReq from './verificationRequest'
+
 const prisma = new PrismaClient()
-console.log('xxx')
+
+
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
+
+export default authHandler
+
 const options = {
   providers: [
     Providers.Facebook({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET
     }),
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
     Providers.Google({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET
     }),
     Providers.Email({
       server: {
@@ -33,12 +40,10 @@ const options = {
       from: process.env.SMTP_FROM
     })
   ],
-  adaper: Adapters.Prisma.Adapter({
-    prisma
+  // @ts-ignore
+  adapter: Adapters.Prisma.Adapter({
+    prisma,
   }),
-  secret: process.env.SECRET
-}
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
-
-export default authHandler
+  secret: process.env.SECRET,
+};
