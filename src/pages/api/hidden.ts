@@ -2,7 +2,6 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/client";
 
 const secretHandler: NextApiHandler = async (req, res) => {
-  console.log(req)
   const session = await getSession({ req });
   if (session) {
     res.end(

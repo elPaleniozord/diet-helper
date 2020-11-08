@@ -9,7 +9,6 @@ import sendVerificationReq from './verificationRequest'
 
 const prisma = new PrismaClient()
 
-
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
 
 export default authHandler

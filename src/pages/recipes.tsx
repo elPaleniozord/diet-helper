@@ -1,15 +1,13 @@
 import { NextPage } from "next"
 import ProtectedRoute from "../components/ProtectedRoute"
 
-const Settings: NextPage = () => {
-  //fetch user data
-
+const Recipes: NextPage = () => {
   return (
     <ProtectedRoute>
-      <h1>Settings</h1>
-      <p>Configure your account</p>
+      <h1>Recipes</h1>
+      <p>Browse available recipes or add your own</p>
     </ProtectedRoute>
   )
 }
 
-export default Settings
+export default Recipes

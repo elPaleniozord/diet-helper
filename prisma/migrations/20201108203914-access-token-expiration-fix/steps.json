@@ -1,0 +1,42 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Account",
+      "field": "accessTokenExpires",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Account",
+          "field": "accessTokenExpires"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Account",
+          "field": "accessTokenExpires"
+        },
+        "directive": "map"
+      },
+      "argument": "name",
+      "value": "\"access_token_expires\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Account",
+      "field": "accessTokenExp"
+    }
+  ]
+}

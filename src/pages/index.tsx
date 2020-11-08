@@ -1,33 +1,25 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { getSession, signIn, signOut, useSession } from 'next-auth/client'
+import { useRouter } from 'next/router'
+import Layout from '../components/Layout'
 
 const IndexPage: NextPage = () => {
   const [session, loading] = useSession();
-  console.log(session)
+  const router = useRouter()
   if(loading) {
     return <div>Loading ...</div>
   }
   if(session) {
     return (
-      <main>
-        Hello, {session.user.email ?? session.user.name}
-        <button onClick={()=>signOut()}>Sign Out</button>
-      </main>
+      <Layout>
+      <h1>Dashboard</h1>
+      <p>something somthing</p>
+    </Layout>
     )
   } else {
-    return (
-      <main>
-        <h1>Next.js Boilerplate</h1>
-        <div>
-          <h2>Database:</h2>
-          <p>PostgreSQL version xxx</p>
-        </div>
-        <button onClick={()=> signIn()}>Sign In</button>
-      </main>
-    );
-  }
-  
+    router.push('/api/auth/signin')
+  }  
 };
 
 export default IndexPage;
