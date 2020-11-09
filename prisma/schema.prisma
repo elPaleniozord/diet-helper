@@ -50,6 +50,10 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  role          Role      @default(USER)
+  settings      Settings
+  logs          Log[]
+  favorites     Favorite[] 
 
   @@map(name: "users")
 }
@@ -63,4 +67,42 @@ model VerificationRequest {
   updatedAt  DateTime @default(now()) @map(name: "updated_at")
 
   @@map(name: "verification_requests")
+}
+
+model Settings {
+  id Int @default(autoincrement()) @id
+  height Int
+  weight Int
+  age Int
+  gender Gender
+  goal String
+  kcal Int
+  prot Int
+  carb Int
+  fats Int
+}
+
+model Log {
+  id Int @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  weight Int
+
+  @@map(name: "logs")
+}
+
+model Favorite {
+  id Int @default(autoincrement()) @id
+
+  @@map(name: "favorites")
+}
+
+enum Role {
+  USER
+  PRO_USER
+  ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
 }

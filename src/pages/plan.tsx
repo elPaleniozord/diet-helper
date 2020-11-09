@@ -4,8 +4,8 @@ import ProtectedRoute from "../components/ProtectedRoute"
 const Plan: NextPage = () => {
   return (
     <ProtectedRoute>
-      <h1>Recipes</h1>
-      <p>Browse available recipes or add your own</p>
+      <h1>Meal Planner</h1>
+      <p>Automate your diet</p>
     </ProtectedRoute>
   )
 }

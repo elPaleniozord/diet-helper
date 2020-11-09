@@ -6,7 +6,6 @@ const Navigator = () => {
   const router = useRouter()
 
   function isActive(route) {
-    console.log(route)
     if(route === router.pathname){
       return 'active'
     }
