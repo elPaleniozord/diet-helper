@@ -1,10 +1,14 @@
 //Mifflin-St Jeor formula
-export const bmr = (sex:string, age:number, weight:number, height:number): number => {
-  return (10*weight) + (6.25*height) - (5*age) + (sex === 'MALE'? 5 : -161)
+interface BMR {age:number, height: number, gender: string, weight: number}
+export const bmr = ({age, height, gender, weight}: BMR): number => {
+  return (10*weight) + (6.25*height) - (5*age) + (gender === 'MALE'? 5 : -161)
 }
 //total daily energy expenditure
-type Activity = 'sedetary' | 'light' | 'moderate' | 'heavy' | 'super'
-export const tdee = (bmr: number, activity: Activity) : number => {
+interface TDEE {
+  bmr: number
+  activity: 'sedetary' | 'light' | 'moderate' | 'heavy' | 'super'
+}
+export const tdee = ({bmr, activity} : TDEE) : number => {
   const lvl = {
     sedetary: 1.2,
     light: 1.375,
