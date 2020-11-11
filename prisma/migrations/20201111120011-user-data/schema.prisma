@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -70,18 +70,18 @@ model VerificationRequest {
 }
 
 model UserData {
-  id          Int     @default(autoincrement()) @id
-  user        User    @relation(fields: [userId], references: [email])
-  userId      String
-  height      Int
-  weight      Int
-  age         Int
-  gender      Gender
-  goal        String
-  kcal        Int
-  prot        Int
-  carb        Int
-  fats        Int
+  id Int @default(autoincrement()) @id
+  user User @relation(fields: [userId], references: [email])
+  userId String
+  height Int
+  weight Int
+  age Int
+  gender Gender
+  goal String
+  kcal Int
+  prot Int
+  carb Int
+  fats Int
 
   @@map(name: "users_data")
 }

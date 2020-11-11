@@ -4,21 +4,24 @@ import { resolvers } from './graphql/resolvers'
 import Cors from 'micro-cors'
 import { PrismaClient } from '@prisma/client'
 import { NextApiHandler } from "next"
+import { getSession } from "next-auth/client"
 
 //database connection
 const prisma = new PrismaClient()
 interface Context{
   prisma: PrismaClient
 }
-function createContext(): Context {
-  return {prisma}
-}
 
 const apolloServer = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  context: ()=>{
-    return prisma
+  context: async ({req}) => {
+    // const token = req.headers && req.headers.cookie.match(/next-auth.session-token=([^;]+)/)[1] || '';
+    // return {
+    //   prisma: prisma,
+    //   token: token
+    // }
+    return {prisma, req}
   }
 })
 

@@ -1,17 +1,12 @@
 export const resolvers = {
   Query: {
-    todos:(_parent, _args, _context) => {
-      return db
-        .select('*')
-        .from('todos'
-        .orderBy('id'))
+    user:(parent, args, {prisma}) => {
+      return prisma.user.findMany(args.id).then(user=>{
+        return user[0]
+      })
     },
-    todo: (_parent, {id}, _context) => {
-      return db
-        .select('*')
-        .from('todos')
-        .where({id})
-        .first()
+    settingsFetch: (parent, args, ctx) => {
+      console.log('auth', ctx.req.authorization)
     }
   }
 }
