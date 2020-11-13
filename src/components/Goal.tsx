@@ -3,11 +3,9 @@ import { useState } from "react"
 const Goal = () => {
   const [goal, setGoal] = useState('WeightLoss')
 
-
   return ( 
-    <div>
-      <h2>Goal</h2>
-      <p>Set your goal</p>
+    <>
+      <label>Goal</label>
       <select 
         value={goal}
         onChange={(e)=>{
@@ -21,18 +19,19 @@ const Goal = () => {
       </select>
 
       {goal==='Custom' ? 
-        ( <>
-          <input placeholder='Enter your daily calorie target' onChange={(e)=>e.target.value} />
-          <input placeholder='Enter your daily protein target' onChange={(e)=>e.target.value} /> 
-          <input placeholder='Enter your daily fats target' onChange={(e)=>e.target.value} /> 
-          <input placeholder='Enter your daily carbohydrates target' onChange={(e)=>e.target.value} /> 
-          </>
-        )
+        <div>
+          <label>kcal</label>
+          <input />
+          <label>protein</label>
+          <input />
+          <label>fats</label>
+          <input />
+          <label>carbohydrates</label>
+          <input />
+        </div> 
         : 
         null}
-
-        <h3>Total Daily Energy Expenditure {}</h3>
-    </div>
+    </>
   )
 }
 

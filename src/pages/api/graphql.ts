@@ -15,13 +15,14 @@ interface Context{
 const apolloServer = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  context: async ({req}) => {
-    // const token = req.headers && req.headers.cookie.match(/next-auth.session-token=([^;]+)/)[1] || '';
-    // return {
-    //   prisma: prisma,
-    //   token: token
-    // }
-    return {prisma, req}
+  context: async (ctx) => {
+    const session = await getSession(ctx)
+    //const token = req.headers && req.headers.cookie.match(/next-auth.session-token=([^;]+)/)[1] || '';
+    return {
+      prisma: prisma,
+      session: session
+    }
+    //return {prisma, req}
   }
 })
 

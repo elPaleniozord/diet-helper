@@ -17,7 +17,7 @@ export const schema = gql`
   }
   type Settings {
     id: Int
-    user: String
+    name: String
     userId: String
     height: Int
     weight: Int

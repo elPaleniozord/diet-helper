@@ -5,8 +5,22 @@ export const resolvers = {
         return user[0]
       })
     },
-    settingsFetch: (parent, args, ctx) => {
-      console.log('auth', ctx.req.authorization)
+    settingsFetch: (parent, args, {prisma, session}) => {
+      console.log('auth', session)
+      return prisma.user.findOne({
+        where: {
+          email: session.user.email
+        }
+      })
+        .then(user => {
+          console.log(user)
+          return user
+        })
+        .catch(err => {
+          console.log(err)
+          return err
+        })
+
     }
   }
 }

@@ -1,12 +1,12 @@
 import { NextPage } from "next"
-import ProtectedRoute from "../components/ProtectedRoute"
+import Layout from "../components/Layout"
 
 const Recipes: NextPage = () => {
   return (
-    <ProtectedRoute>
+    <Layout>
       <h1>Recipes</h1>
       <p>Browse available recipes or add your own</p>
-    </ProtectedRoute>
+    </Layout>
   )
 }
 

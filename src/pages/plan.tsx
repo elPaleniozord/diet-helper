@@ -1,12 +1,12 @@
 import { NextPage } from "next"
-import ProtectedRoute from "../components/ProtectedRoute"
+import Layout from '../components/Layout'
 
 const Plan: NextPage = () => {
   return (
-    <ProtectedRoute>
+    <Layout>
       <h1>Meal Planner</h1>
       <p>Automate your diet</p>
-    </ProtectedRoute>
+    </Layout>
   )
 }
 
