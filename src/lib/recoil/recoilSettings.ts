@@ -24,8 +24,8 @@ export const settingsState = atom({
 
 export const setSettings = selector({
   key: 'setSettings',
-  set: ({set}) => set(settingsState, (settings) => {
-    console.log(settingsState,settings)
-    return settings
+  set: ({set}) => set(settingsState, (update) => {
+    console.log(settingsState, update)
+    return update
   })
 })

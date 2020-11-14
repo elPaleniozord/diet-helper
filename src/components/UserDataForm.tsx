@@ -6,12 +6,12 @@ import IndexCalculator from './IndexCalculator'
 
 const useSettings = () => ({
   settings: useRecoilValue(settingsState),
-  update: useSetRecoilState(setSettings),
-  reset: useResetRecoilState(settingsState)
 })
 
 const UserDataForm = () => {
-  const {settings, update, reset} = useSettings()
+  const setSetting = useSetRecoilState(settingsState)
+  const {settings} = useSettings()
+  
   const handleForm = (e) => {
     e.preventDefault()
     console.log('Updating your settings')
@@ -19,8 +19,10 @@ const UserDataForm = () => {
 
   const handleChange = (e) => {
     const {name, value} = e.target
-    console.log(name,value)
-    update({name,value})
+    setSetting(settings => {
+      return {...settings, [name]: value}
+    })
+
   }
   return (
     <form>
@@ -33,13 +35,13 @@ const UserDataForm = () => {
         </select>
 
         <label>Age</label>
-        <input />
+        <input name='age' type='number' onChange={handleChange} value={settings.age} />
 
         <label>Height</label>
-        <input />
+        <input name='height' type='number' onChange={handleChange} value={settings.height} />
 
         <label>Weight</label>
-        <input />
+        <input name='weight' type='number' onChange={handleChange} value={settings.weight} />
       </div>
 
       <h3>Goals</h3>
@@ -49,7 +51,7 @@ const UserDataForm = () => {
         <label>Activity Level
           {/* <Tooltip text="Try your best to estimate your daily level of activity." /> */}
         </label>
-        <select>
+        <select name='activity' onChange={handleChange} value={settings.activity}>
           <option>Sedetary</option>
           <option>Light</option>
           <option>Moderate</option>
