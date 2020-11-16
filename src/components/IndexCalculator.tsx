@@ -1,31 +1,32 @@
-const IndexCalculator = () => {
+import { useEffect } from 'react'
+import { adjustMacros, calculateBMR, calculateTDEE } from '../utils/formulas'
+import SliderInput from './SliderInput'
+
+const IndexCalculator = ({settings}) => {
+  useEffect(()=>{
+    if(settings.goal === 'custom') {
+      return
+    }
+    let update = {...settings, bmr: calculateBMR(settings)}
+    update.tdee = calculateTDEE(update)
+    const {prot, fats, carb, kcal} = adjustMacros(update)
+    console.log(update, prot, fats,carb,kcal)
+  }, [])
+
   return (
     <div>
-      BMR
-      <div>1500 kcal</div>
+      <h3>BMR {settings.bmr}</h3>
+      <h3>TDEE {settings.tdee}</h3>
+      <h3>Total Calories {settings.kcal}</h3>
 
-      <table>
-        <caption>TDEE</caption>
-        <tbody>
-          <tr>
-            <td>kcal</td>
-            <td>2300</td>
-          </tr>
-          <tr>
-            <td>protein</td>
-            <td>140</td>
-          </tr>
-          <tr>
-            <td>fats</td>
-            <td>65</td>
-          </tr>
-          <tr>
-            <td>carbohydrates</td>
-            <td>300</td>
-          </tr>        
-          </tbody>        
-        </table>
-      <div>Some Graphs</div>
+      <div>
+        <SliderInput  />
+        <SliderInput />
+        <SliderInput />
+      </div>
+
+      <p>Caloric deficit/surplus: X%</p>
+      <p>Expected weight shift: +/- Y kg/week</p>
     </div>
   )
 }

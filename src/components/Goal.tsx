@@ -1,16 +1,23 @@
-import { useState } from "react"
+import {useRecoilState} from 'recoil'
+import {settingsState} from '../lib/recoil/recoilSettings'
 
 const Goal = () => {
-  const [goal, setGoal] = useState('WeightLoss')
+  const [settings, setSettings] = useRecoilState(settingsState)
+
+  const handleChange = (e) => {
+    const {name, value} = e.target
+    setSettings(settings => {
+      return {...settings, [name]: value}
+    })
+  }
 
   return ( 
     <>
       <label>Goal</label>
       <select 
-        value={goal}
-        onChange={(e)=>{
-          setGoal(e.target.value)
-        }}
+        name='goal'
+        value={settings.goal}
+        onChange={handleChange}
       >
         <option value='Weight Loss'>Weight Loss</option>
         <option value='Maintenance'>Maintenance</option>
@@ -18,16 +25,16 @@ const Goal = () => {
         <option value='Custom'>Custom</option>
       </select>
 
-      {goal==='Custom' ? 
+      {settings.goal==='Custom' ? 
         <div>
           <label>kcal</label>
-          <input />
+          <input name='kcal' onChange={handleChange} value={settings.kcal} />
           <label>protein</label>
-          <input />
+          <input name='prot' onChange={handleChange} value={settings.prot} />
           <label>fats</label>
-          <input />
+          <input name='fats' onChange={handleChange} value={settings.fats} />
           <label>carbohydrates</label>
-          <input />
+          <input name='carb' onChange={handleChange} value={settings.carb} />
         </div> 
         : 
         null}

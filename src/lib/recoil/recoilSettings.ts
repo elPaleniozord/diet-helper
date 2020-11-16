@@ -8,13 +8,11 @@ const defaults = {
   goal: 'Weight Loss',
   activity: 'Sedetary',
   bmr: 1500,
-  targets: {
-    kcal: undefined,
-    prot: undefined,
-    fats: undefined,
-    carb: undefined
-  }
-
+  tdee: 2200,
+  kcal: undefined,
+  prot: undefined,
+  fats: undefined,
+  carb: undefined
 }
 
 export const settingsState = atom({

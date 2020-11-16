@@ -24,9 +24,10 @@ const UserDataForm = () => {
     })
 
   }
+
   return (
     <form>
-      <h3>Basic Information</h3>
+      <h3>Basic Informations</h3>
       <div>
         <label>Gender</label>
         <select name="gender" id='gender' onChange={handleChange} value={settings.gender}>
@@ -40,6 +41,7 @@ const UserDataForm = () => {
         <label>Height</label>
         <input name='height' type='number' onChange={handleChange} value={settings.height} />
 
+        {/*Add time stamp to weight*/}
         <label>Weight</label>
         <input name='weight' type='number' onChange={handleChange} value={settings.weight} />
       </div>
@@ -60,7 +62,7 @@ const UserDataForm = () => {
         </select>
       </div>
 
-      <IndexCalculator />
+      <IndexCalculator settings={settings} />
 
       <h3>Update</h3>
       <div>
