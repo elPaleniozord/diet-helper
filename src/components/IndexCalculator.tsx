@@ -1,17 +1,31 @@
 import { useEffect } from 'react'
+import {useRecoilState} from 'recoil'
+import {settingsState} from '../lib/recoil/recoilSettings'
 import { adjustMacros, calculateBMR, calculateTDEE } from '../utils/formulas'
 import SliderInput from './SliderInput'
 
 const IndexCalculator = ({settings}) => {
+  const [state, setSettings] = useRecoilState(settingsState)
   useEffect(()=>{
     if(settings.goal === 'custom') {
       return
     }
-    let update = {...settings, bmr: calculateBMR(settings)}
+    let update = {...settings}
+    update.bmr = calculateBMR(settings)
     update.tdee = calculateTDEE(update)
     const {prot, fats, carb, kcal} = adjustMacros(update)
-    console.log(update, prot, fats,carb,kcal)
-  }, [])
+    setSettings(settings => {
+      return {
+        ...settings,
+        bmr: update.bmr,
+        tdee: update.tdee,
+        carb: carb,
+        fats: fats,
+        kcal: kcal,
+        prot: prot,
+      }
+    })
+  }, [JSON.stringify(settings)])
 
   return (
     <div>
@@ -20,9 +34,9 @@ const IndexCalculator = ({settings}) => {
       <h3>Total Calories {settings.kcal}</h3>
 
       <div>
-        <SliderInput  />
-        <SliderInput />
-        <SliderInput />
+        <SliderInput nutrient='Protein' idx='prot' />
+        <SliderInput nutrient='Fats' idx='fats' />
+        <SliderInput nutrient='Carbohydrates' idx='carb' />
       </div>
 
       <p>Caloric deficit/surplus: X%</p>

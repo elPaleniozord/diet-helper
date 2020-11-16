@@ -9,10 +9,10 @@ const defaults = {
   activity: 'Sedetary',
   bmr: 1500,
   tdee: 2200,
-  kcal: undefined,
-  prot: undefined,
-  fats: undefined,
-  carb: undefined
+  kcal: 2200,
+  prot: 120,
+  fats: 60,
+  carb: 60
 }
 
 export const settingsState = atom({

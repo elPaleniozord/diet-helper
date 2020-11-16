@@ -24,20 +24,6 @@ const Goal = () => {
         <option value='Bulking Up'>Bulking Up</option>
         <option value='Custom'>Custom</option>
       </select>
-
-      {settings.goal==='Custom' ? 
-        <div>
-          <label>kcal</label>
-          <input name='kcal' onChange={handleChange} value={settings.kcal} />
-          <label>protein</label>
-          <input name='prot' onChange={handleChange} value={settings.prot} />
-          <label>fats</label>
-          <input name='fats' onChange={handleChange} value={settings.fats} />
-          <label>carbohydrates</label>
-          <input name='carb' onChange={handleChange} value={settings.carb} />
-        </div> 
-        : 
-        null}
     </>
   )
 }
