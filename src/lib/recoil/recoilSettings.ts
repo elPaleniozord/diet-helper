@@ -4,7 +4,7 @@ const defaults = {
   age: 25,
   gender: 'Female',
   weight: 75,
-  height: 180,
+  height: "180",
   goal: 'Weight Loss',
   activity: 'Sedetary',
   bmr: 1500,

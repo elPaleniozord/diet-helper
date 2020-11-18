@@ -1,28 +1,42 @@
-import {useRecoilValue, useSetRecoilState, useResetRecoilState} from 'recoil'
-import {setSettings, settingsState} from '../lib/recoil/recoilSettings'
+import {useRecoilState} from 'recoil'
+import {settingsState} from '../lib/recoil/recoilSettings'
 import Goal from './Goal'
 import IndexCalculator from './IndexCalculator'
 
+import { gql, useMutation } from '@apollo/client'
 
-const useSettings = () => ({
-  settings: useRecoilValue(settingsState),
-})
+const UPDATE_SETTINGS = gql`
+  mutation updateSettings($input: SettingsInput!) {
+    updateSettings(input: $input) {
+      type
+      text
+    }
+  }
+`
 
-const UserDataForm = () => {
-  const setSetting = useSetRecoilState(settingsState)
-  const {settings} = useSettings()
-  
-  const handleForm = (e) => {
+const UserDataForm = (): JSX.Element => {
+  const [settings, setSettings] = useRecoilState(settingsState)
+  const [updateSettings, {loading, error}] = useMutation(UPDATE_SETTINGS, {
+    onCompleted({}){
+      console.log('complete')
+    },
+    onError: (err)=> {
+      err.graphQLErrors.map(({message}, i) => {
+        console.log(message)
+      })
+    }
+  })
+  const handleForm = (e): void => {
     e.preventDefault()
-    console.log('Updating your settings')
+    console.log(settings)
+    updateSettings({variables: {input: settings}})
   }
 
   const handleChange = (e) => {
     const {name, value} = e.target
-    setSetting(settings => {
+    setSettings(settings => {
       return {...settings, [name]: value}
     })
-
   }
 
   return (

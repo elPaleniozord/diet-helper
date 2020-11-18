@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -73,18 +73,17 @@ model UserData {
   id          Int     @default(autoincrement()) @id
   user        User    @relation(fields:  [userId], references: [id])
   userId      Int
-  activity    String?
-  height      Float?
-  weight      Float?
+  height      Int?
+  weight      Int?
   age         Int?
   gender      Gender?
   goal        String?
-  bmr         Float?
-  tdee        Float?
-  kcal        Float?
-  prot        Float?
-  carb        Float?
-  fats        Float?
+  bmr         Int?
+  tdee        Int?
+  kcal        Int?
+  prot        Int?
+  carb        Int?
+  fats        Int?
 
   @@map(name: "users_data")
 }
@@ -110,6 +109,6 @@ enum Role {
 }
 
 enum Gender {
-  Male
-  Female
+  MALE
+  FEMALE
 }

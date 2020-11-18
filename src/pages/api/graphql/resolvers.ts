@@ -1,11 +1,6 @@
 export const resolvers = {
   Query: {
-    user:(parent, args, {prisma}) => {
-      return prisma.user.findMany(args.id).then(user=>{
-        return user[0]
-      })
-    },
-    settingsFetch: (parent, args, {prisma, session}) => {
+    fetchSettings: (parent, args, {prisma, session}) => {
       console.log('auth', session)
       return prisma.user.findOne({
         where: {
@@ -22,5 +17,18 @@ export const resolvers = {
         })
 
     }
+  },
+  Mutation: {
+    updateSettings: (parent, args, {prisma, session}) => {
+      const {age, activity, bmr, gender} = args
+      const upsertMany = Object.entries(args.input).map(entry => {
+
+      })
+      return prisma.userData.upsert({
+        where: {id: session.id},
+        create: {...args.input, user: session.id, userId: session.id},
+        update: args.input,
+      })
+    },
   }
 }

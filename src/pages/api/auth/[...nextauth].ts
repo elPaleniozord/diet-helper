@@ -43,6 +43,11 @@ const options = {
   adapter: Adapters.Prisma.Adapter({
     prisma,
   }),
-
+  callbacks: {
+    session: async (session, user) => {
+      session.id = user.id
+      return Promise.resolve(session)
+    }
+  },
   secret: process.env.SECRET,
 };

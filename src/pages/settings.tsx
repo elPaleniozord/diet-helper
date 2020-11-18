@@ -1,19 +1,18 @@
 import { NextPage } from "next"
 import UserDataForm from '../components/UserDataForm'
-import { useEffect, useReducer, useState } from "react"
 import Layout from '../components/Layout'
+import { gql, useQuery} from '@apollo/client'
+
+const FETCH_SETTINGS = gql`
+  query {
+    fetchSettings {
+      id
+    }
+  }
+`
 
 const Settings: NextPage = (props) => {
-  useEffect(()=>{
-    const data = fetch('http://localhost:3000/api/graphql', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({query: '{settingsFetch {id, email, role}}'})
-  })
-    .then(res => res.json())
-    .then(data => console.log(data));
-  }, [])
-
+  //const {data,loading, error} = useQuery(FETCH_SETTINGS)
   return (
     <Layout>
       <h2>Settings</h2>

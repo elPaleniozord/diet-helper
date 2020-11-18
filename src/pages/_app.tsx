@@ -1,16 +1,28 @@
 //import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { getSession, Provider } from 'next-auth/client'
-import {RecoilRoot} from 'recoil'
+import { RecoilRoot } from 'recoil'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/api/graphql',
+  onError: ({ networkError, graphQLErrors }) => {
+    console.log('graphQLErrors', graphQLErrors)
+    console.log('networkError', networkError)
+  },
+  cache: new InMemoryCache()
+});
 
 const MyApp = (props: AppProps) => {
   const {Component, ...pageProps} = props
   return (
-    <Provider session={pageProps.session}>
-      <RecoilRoot>
-        <Component {...pageProps} />   
-      </RecoilRoot>         
-    </Provider>
+    <ApolloProvider client={client} >
+      <Provider session={pageProps.session}>
+        <RecoilRoot>
+          <Component {...pageProps} />   
+        </RecoilRoot>         
+      </Provider>
+    </ApolloProvider>
   )
 };
 
