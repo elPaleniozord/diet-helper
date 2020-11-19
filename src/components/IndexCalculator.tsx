@@ -39,7 +39,7 @@ const IndexCalculator = ({settings}) => {
         <SliderInput nutrient='Carbohydrates' idx='carb' />
       </div>
 
-      <p>Caloric deficit/surplus: X%</p>
+      <p>Caloric {settings.kcal - settings.tdee>0 ? 'surplus' : 'deficit'}: {settings.kcal - settings.tdee} kcal</p>
       <p>Expected weight shift: +/- Y kg/week</p>
     </div>
   )

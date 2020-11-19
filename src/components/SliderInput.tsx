@@ -12,9 +12,9 @@ const SliderInput = ({nutrient, idx}) => {
   const handleChange = (e) => {
     const {name, value} = e.target
     const update = customMacros({...settings, [name]: value})
-
+    console.log(update)
     setSettings(settings => {
-      return {...settings, kcal: update.kcal, [name]: value}
+      return {...update, kcal: update.kcal, [name]: parseInt(value)}
     })
   }
 
@@ -24,6 +24,7 @@ const SliderInput = ({nutrient, idx}) => {
       <span>{perc.toFixed(0)} %</span>
       <input 
         name={idx}
+        value={settings[idx]}
         onChange={handleChange}
         type='range'
         min={1} max={max}

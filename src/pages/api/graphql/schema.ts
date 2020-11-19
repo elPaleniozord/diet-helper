@@ -3,17 +3,17 @@ import { gql } from 'apollo-server-micro'
 export const schema = gql`
   type Settings {
     activity: String
-    age: Float
+    age: Int
     gender: String
-    weight: Float
-    height: Float
+    weight: Int
+    height: Int
     goal: String    
-    bmr: Float
-    tdee: Float
-    kcal: Float
-    prot: Float
-    fats: Float
-    carb: Float
+    bmr: Int
+    tdee: Int
+    kcal: Int
+    prot: Int
+    fats: Int
+    carb: Int
   }
 
   type Query {
@@ -31,17 +31,17 @@ export const schema = gql`
 
   input SettingsInput {
     activity: String
-    age: Float
+    age: Int
     gender: String
-    weight: Float
-    height: String
+    weight: Int
+    height: Int
     goal: String    
-    bmr: Float
-    tdee: Float
-    kcal: Float
-    prot: Float
-    fats: Float
-    carb: Float
+    bmr: Int
+    tdee: Int
+    kcal: Int
+    prot: Int
+    fats: Int
+    carb: Int
   }
 
   scalar Void

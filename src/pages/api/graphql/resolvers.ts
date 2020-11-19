@@ -20,15 +20,18 @@ export const resolvers = {
   },
   Mutation: {
     updateSettings: (parent, args, {prisma, session}) => {
-      const {age, activity, bmr, gender} = args
-      const upsertMany = Object.entries(args.input).map(entry => {
-
-      })
       return prisma.userData.upsert({
-        where: {id: session.id},
-        create: {...args.input, user: session.id, userId: session.id},
-        update: args.input,
+        where: { id: session.id },
+        create: {...args.input, user: {
+          connect: {id: session.id}
+        }},
+        update: args.input
       })
+      // return prisma.userData.upsert({
+      //   where: {id: session.id},
+      //   create: {...args.input, user: session.id},
+      //   update: args.input,
+      // })
     },
   }
 }

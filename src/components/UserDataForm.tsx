@@ -33,9 +33,10 @@ const UserDataForm = (): JSX.Element => {
   }
 
   const handleChange = (e) => {
-    const {name, value} = e.target
+    const {name, value, type} = e.target
+
     setSettings(settings => {
-      return {...settings, [name]: value}
+      return {...settings, [name]: type==='number' ? parseFloat(value) : value} //ensure proper type, otherwise prisma wont be happy
     })
   }
 
