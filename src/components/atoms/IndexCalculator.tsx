@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import {useRecoilState} from 'recoil'
-import {settingsState} from '../lib/recoil/recoilSettings'
-import { adjustMacros, calculateBMR, calculateTDEE } from '../utils/formulas'
+import {settingsState} from '../../lib/recoil/recoilSettings'
+import { adjustMacros, calculateBMR, calculateTDEE } from '../../utils/formulas'
 import SliderInput from './SliderInput'
 
 const IndexCalculator = ({settings}) => {

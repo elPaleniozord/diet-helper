@@ -1,7 +1,7 @@
 import {useRecoilValue, useSetRecoilState, useResetRecoilState} from 'recoil'
-import {setSettings, settingsState} from '../lib/recoil/recoilSettings'
-import Goal from './Goal'
-import IndexCalculator from './IndexCalculator'
+import {setSettings, settingsState} from '../../lib/recoil/recoilSettings'
+import Goal from '../Goal'
+import IndexCalculator from '../atoms/IndexCalculator'
 
 
 const useSettings = () => ({

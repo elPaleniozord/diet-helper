@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
-import { settingsState } from "../lib/recoil/recoilSettings"
-import { customMacros } from "../utils/formulas"
+import { settingsState } from "../../lib/recoil/recoilSettings"
+import { customMacros } from "../../utils/formulas"
 
 const SliderInput = ({nutrient, idx}) => {
   const [settings, setSettings] = useRecoilState(settingsState)

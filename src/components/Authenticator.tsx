@@ -1,6 +1,6 @@
 import { useSession, getSession } from "next-auth/client"
-import AccessDenied from './AccessDenied'
-import Layout from './Layout'
+import AccessDenied from './molecules/AccessDenied'
+import Layout from './organisms/Layout'
 
 const Authenticator = ({children, session}) => {
   if (!session && typeof window !== 'undefined') {
