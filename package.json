@@ -8,14 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.7",
     "@nexus/schema": "^0.17.0",
     "@prisma/client": "^2.10.2",
     "apollo-server-micro": "^2.19.0",
+    "graphql": "^15.4.0",
     "micro-cors": "^0.1.1",
     "next": "^10.0.0",
     "next-auth": "^3.1.0",
     "nexus-plugin-prisma": "^0.23.1",
     "react": "16.13.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "16.13.1",
     "recoil": "^0.1.2"
   },

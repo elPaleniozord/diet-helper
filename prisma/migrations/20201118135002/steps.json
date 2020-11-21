@@ -1,0 +1,71 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "user",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "userId",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "height",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "weight",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "age",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "gender",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "goal",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "kcal",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "prot",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "carb",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "fats",
+      "arity": "Optional"
+    }
+  ]
+}

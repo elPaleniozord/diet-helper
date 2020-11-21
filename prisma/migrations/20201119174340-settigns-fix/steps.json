@@ -1,0 +1,48 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateEnum",
+      "enum": "Gender",
+      "createdValues": [
+        "Male",
+        "Female"
+      ],
+      "deletedValues": [
+        "MALE",
+        "FEMALE"
+      ]
+    },
+    {
+      "tag": "CreateField",
+      "model": "UserData",
+      "field": "activity",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "height",
+      "type": "Float"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "weight",
+      "type": "Float"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "bmr",
+      "type": "Float"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "tdee",
+      "type": "Float"
+    }
+  ]
+}

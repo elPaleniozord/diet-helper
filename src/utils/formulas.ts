@@ -2,7 +2,7 @@
 interface BMR {age:number, height: number, gender: string, weight: number}
 export const calculateBMR = ({age, height, gender, weight}: BMR): number => {
 
-  return (10*weight) + (6.25*height) - (5*age) + (gender === 'Male'? 5 : -161)
+  return Math.round((10*weight) + (6.25*height) - (5*age) + (gender === 'Male'? 5 : -161))
 }
 //total daily energy expenditure
 interface TDEE {
@@ -18,7 +18,7 @@ export const calculateTDEE = ({bmr, activity} : TDEE) : number => {
     Heavy: 1.725,
     'Very Heavy': 1.9
   }
-  return bmr*lvl[activity]
+  return Math.round(bmr*lvl[activity])
 } 
 
 export const adjustMacros = (data) => {
@@ -29,10 +29,10 @@ export const adjustMacros = (data) => {
           carb = (kcal - (prot*4) - (fats*9))/4
 
     return {
-      carb: carb,
-      fats: fats,
-      kcal: kcal,
-      prot: prot
+      carb: Math.round(carb),
+      fats: Math.round(fats),
+      kcal: Math.round(kcal),
+      prot: Math.round(prot)
     }
   }
   switch(data.goal) {
@@ -48,6 +48,7 @@ export const adjustMacros = (data) => {
 }
 
 export const customMacros = (data) => {
+  console.log('CUSTOM MACROS', data)
   const totalKcal = data.prot*4 + data.carb*4 + data.fats*9
   return {...data, kcal: totalKcal}
 }

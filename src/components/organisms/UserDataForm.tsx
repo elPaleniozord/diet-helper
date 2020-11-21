@@ -1,28 +1,43 @@
-import {useRecoilValue, useSetRecoilState, useResetRecoilState} from 'recoil'
-import {setSettings, settingsState} from '../../lib/recoil/recoilSettings'
-import Goal from '../Goal'
+import {useRecoilState} from 'recoil'
+import {settingsState} from '../../lib/recoil/recoilSettings'
+import Goal from '../atoms/Goal'
 import IndexCalculator from '../atoms/IndexCalculator'
 
+import { gql, useMutation } from '@apollo/client'
 
-const useSettings = () => ({
-  settings: useRecoilValue(settingsState),
-})
+const UPDATE_SETTINGS = gql`
+  mutation updateSettings($input: SettingsInput!) {
+    updateSettings(input: $input) {
+      type
+      text
+    }
+  }
+`
 
-const UserDataForm = () => {
-  const setSetting = useSetRecoilState(settingsState)
-  const {settings} = useSettings()
-  
-  const handleForm = (e) => {
+const UserDataForm = (): JSX.Element => {
+  const [settings, setSettings] = useRecoilState(settingsState)
+  const [updateSettings, {loading, error}] = useMutation(UPDATE_SETTINGS, {
+    onCompleted({}){
+      console.log('complete')
+    },
+    onError: (err)=> {
+      err.graphQLErrors.map(({message}, i) => {
+        console.log(message)
+      })
+    }
+  })
+  const handleForm = (e): void => {
     e.preventDefault()
-    console.log('Updating your settings')
+    console.log(settings)
+    updateSettings({variables: {input: settings}})
   }
 
   const handleChange = (e) => {
-    const {name, value} = e.target
-    setSetting(settings => {
-      return {...settings, [name]: value}
-    })
+    const {name, value, type} = e.target
 
+    setSettings(settings => {
+      return {...settings, [name]: type==='number' ? parseFloat(value) : value} //ensure proper type, otherwise prisma wont be happy
+    })
   }
 
   return (
@@ -67,7 +82,6 @@ const UserDataForm = () => {
       <h3>Update</h3>
       <div>
         <button onClick={handleForm}>Save</button>
-        <button>Reset</button>
       </div>
     </form>
   )

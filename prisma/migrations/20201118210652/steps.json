@@ -1,0 +1,52 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "userData",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "UserData",
+      "field": "bmr",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "UserData",
+      "field": "tdee",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "user",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "UserData",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "newValue": "[id]"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "UserData",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    }
+  ]
+}

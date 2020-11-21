@@ -1,33 +1,48 @@
 import { gql } from 'apollo-server-micro'
 
 export const schema = gql`
-  type Query {
-    todos: [Todo]!
-    todo(id: ID!): Todo
-    user(id: ID!): User
-    settingsFetch: Settings
-  }
-  type Todo {
-    id: ID!
-    description: String!
-    done: Boolean!
-  }
-  type User {
-    name: String
-  }
   type Settings {
-    id: Int
-    name: String
-    userId: String
-    height: Int
-    weight: Int
+    activity: String
     age: Int
     gender: String
-    goal: Int
+    weight: Int
+    height: Int
+    goal: String    
+    bmr: Int
+    tdee: Int
     kcal: Int
     prot: Int
-    carb: Int
     fats: Int
+    carb: Int
   }
 
+  type Query {
+    fetchSettings: Settings
+  }
+  
+  type Mutation {
+    updateSettings(input: SettingsInput): Message
+  }
+
+  type Message {
+    type: String
+    text: String
+  }
+
+  input SettingsInput {
+    activity: String
+    age: Int
+    gender: String
+    weight: Int
+    height: Int
+    goal: String    
+    bmr: Int
+    tdee: Int
+    kcal: Int
+    prot: Int
+    fats: Int
+    carb: Int
+  }
+
+  scalar Void
 `

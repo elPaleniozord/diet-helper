@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
-import Layout from '../components/Layout';
+import Layout from '../components/organisms/Layout';
 import Link from 'next/link';
 
 const NotFoundPage: NextPage = () => {

@@ -1,5 +1,5 @@
 import {useRecoilState} from 'recoil'
-import {settingsState} from '../lib/recoil/recoilSettings'
+import {settingsState} from '../../lib/recoil/recoilSettings'
 
 const Goal = () => {
   const [settings, setSettings] = useRecoilState(settingsState)

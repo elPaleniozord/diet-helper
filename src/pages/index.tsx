@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { getSession, signIn, signOut, useSession } from 'next-auth/client'
 import { Router, useRouter } from 'next/router'
-import Layout from '../components/Layout'
+import Layout from '../components/organisms/Layout';
 import ProgressGraph from '../components/ProgressGraph'
 import Link from 'next/link';
 

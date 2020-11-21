@@ -6,6 +6,7 @@ import SliderInput from './SliderInput'
 
 const IndexCalculator = ({settings}) => {
   const [state, setSettings] = useRecoilState(settingsState)
+  const difference = settings.kcal - settings.tdee
   useEffect(()=>{
     if(settings.goal === 'custom') {
       return
@@ -26,7 +27,7 @@ const IndexCalculator = ({settings}) => {
       }
     })
   }, [JSON.stringify(settings)])
-
+  console.log(settings)
   return (
     <div>
       <h3>BMR {settings.bmr}</h3>
@@ -39,8 +40,8 @@ const IndexCalculator = ({settings}) => {
         <SliderInput nutrient='Carbohydrates' idx='carb' />
       </div>
 
-      <p>Caloric deficit/surplus: X%</p>
-      <p>Expected weight shift: +/- Y kg/week</p>
+      <p>Caloric {difference>0 ? 'surplus' : 'deficity'} {difference.toFixed(1)} kcal</p>
+      <p>Expected weight shift: {(difference/1100).toFixed(1)} kg/week</p>
     </div>
   )
 }
