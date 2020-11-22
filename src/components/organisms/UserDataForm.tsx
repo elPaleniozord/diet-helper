@@ -1,7 +1,7 @@
 import {useRecoilState} from 'recoil'
 import {settingsState} from '../../lib/recoil/recoilSettings'
 import Goal from '../atoms/Goal'
-import IndexCalculator from '../atoms/IndexCalculator'
+import IndexCalculator from '../molecules/IndexCalculator'
 
 import { gql, useMutation } from '@apollo/client'
 
@@ -28,7 +28,6 @@ const UserDataForm = (): JSX.Element => {
   })
   const handleForm = (e): void => {
     e.preventDefault()
-    console.log(settings)
     updateSettings({variables: {input: settings}})
   }
 

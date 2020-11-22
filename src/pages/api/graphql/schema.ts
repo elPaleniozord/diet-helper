@@ -22,6 +22,7 @@ export const schema = gql`
   
   type Mutation {
     updateSettings(input: SettingsInput): Message
+    addRecipe(input: RecipeInput): Message
   }
 
   type Message {
@@ -42,6 +43,10 @@ export const schema = gql`
     prot: Int
     fats: Int
     carb: Int
+  }
+
+  input RecipeInput {
+    title: String
   }
 
   scalar Void

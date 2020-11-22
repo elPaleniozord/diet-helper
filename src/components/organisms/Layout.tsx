@@ -1,5 +1,6 @@
 import Navigator from './Navigator'
 import Head from 'next/head'
+import Footer from '../atoms/Footer'
 
 const layout= ({children}) => {
   return (
@@ -10,9 +11,7 @@ const layout= ({children}) => {
       </Head>
       <Navigator />
       {children}
-      <footer>
-        designed and coded by jwalasik
-      </footer>
+      <Footer />
     </main>
   )
 }

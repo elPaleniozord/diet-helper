@@ -28,5 +28,8 @@ export const resolvers = {
         update: args.input
       })
     },
+    addRecipe: (parent,args, {prisma, session}) => {
+      console.log('adding recipe - resolver')
+    }
   }
 }

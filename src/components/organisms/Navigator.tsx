@@ -33,6 +33,7 @@ const Navigator = () => {
 
         <li>
           <button onClick={()=>signOut()}>Sign Out</button>
+          {/* <Button action={signOut}>Sign Out</Button> */}
         </li>
       </ul>
     </nav>
