@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client"
 import Router from "next/router"
+import { useRecoilState } from "recoil"
 import Input from "../../components/atoms/Input"
 import SelectInput from "../../components/atoms/Select"
 import Tags from "../../components/atoms/Tags"
@@ -18,6 +19,7 @@ const ADD_RECIPE = gql`
 `
 
 const AddRecipe = (): JSX.Element => {
+  const [newRecipe, setNewRecipe] = useRecoilState(newRecipeState)
   return (
     <Layout>
       <h1>Create New Recipe</h1>
@@ -32,7 +34,7 @@ const AddRecipe = (): JSX.Element => {
             stateAtom={newRecipeState}
           />
           <input placeholder='Tags - ex. vegan, paleo, etc.' />
-          <Tags />
+          <Tags stateAtom={newRecipeState}/>
         </div>
 
         <div>
