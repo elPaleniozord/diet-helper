@@ -2,6 +2,7 @@ import {atom, selector} from 'recoil'
 
 const defaults = {
   tags: [],
+  input: '',
   title: '',
   description: '',
   menu: [],

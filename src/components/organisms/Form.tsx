@@ -15,7 +15,7 @@ const Form = ({query, stateAtom, children}): JSX.Element => {
   })
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('submit')
+    console.log('FORM SUBMIT')
     submitForm({variables: {input: state}})
   }
 

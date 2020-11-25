@@ -1,22 +1,27 @@
-import { createRef, useEffect, useState } from "react"
+import { useRecoilState } from "recoil"
+import { newRecipeState } from "../../lib/recoil/recoilRecipes"
 
-const Tags = ({stateAtom}) => {
-  const [state, setState] = useState({
-    tags: [],
-    input: '',
-  })
-  console.log(state)
-  const addTag = (tag) => {
-    const newTags = [...state.tags, tag]
-    setState({
-      tags: newTags,
+const Tags = () => {
+  const [state, setState] = useRecoilState(newRecipeState)
+
+  const addTag = (tag: string): void => {
+    if(state.input === '') return
+    const newState = {
+      ...state,
+      tags: [...state.tags, tag],
       input: ''
-    })
+    }
+    setState(newState)
   }
-  const removeTag = (id) => {
-    console.log('remove')
-    const newTags = [...state.tags].filter((tag)=> tag !== id ? tag : null)
-    setState({...state, tags: newTags})
+
+  const removeTag = (e?, tag?) => {
+    const id = tag ? tag : e.target.id
+    console.log(id)
+    const newTags = [...state.tags.filter((tag)=> tag !== id ? tag : null)]
+    setState({
+      ...state,
+      tags: newTags
+    })
   }
 
   const handleClick = (e) => {
@@ -28,13 +33,10 @@ const Tags = ({stateAtom}) => {
   }
 
   const handleKeyDown = (e) => {
-    if(e.keyCode === 13 && e.target.value !== '') {
-      console.log('enter')
-      addTag(state.input)
-    }
-    if(e.keyCode === 8 && state.tags !== [] && state.input === '') {
+    if(e.keyCode === 8) {
       console.log('backspace')
-      removeTag(state.tags[state.tags.length - 1])
+      const tag = state.tags[state.tags.length-1]
+      removeTag(null,tag)
     }
   }
   
@@ -46,14 +48,13 @@ const Tags = ({stateAtom}) => {
           return (
             <li key={tag+idx}>
               {tag}
-              <button id={tag} onClick={()=>removeTag(tag)}>x</button>
+              <button type='button' id={tag} onClick={removeTag}>X</button>
             </li>
           )
         })}
       </ul>
-      <input name='tag' value={state.input} placeholder='i.e. vegan, keto etc.' onChange={handleInputChange} onKeyDown={handleKeyDown}/>
+      <input name='tag' value={state.input} placeholder='i.e. vegan, keto etc.' onChange={handleInputChange} onKeyDown={handleKeyDown} />
       <button onClick={handleClick}>Add</button>
-
     </div>
   )
 }

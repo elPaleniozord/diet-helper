@@ -34,7 +34,7 @@ const AddRecipe = (): JSX.Element => {
             stateAtom={newRecipeState}
           />
           <input placeholder='Tags - ex. vegan, paleo, etc.' />
-          <Tags stateAtom={newRecipeState}/>
+          <Tags />
         </div>
 
         <div>
