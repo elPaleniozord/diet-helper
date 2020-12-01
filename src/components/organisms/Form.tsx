@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client"
-import { Children } from "react"
 import { useRecoilState } from "recoil"
 
 const Form = ({query, stateAtom, children}): JSX.Element => {

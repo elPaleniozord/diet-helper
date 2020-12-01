@@ -1,10 +1,12 @@
 import { gql } from "@apollo/client"
 import Router from "next/router"
 import { useRecoilState } from "recoil"
+import ImageUpload from "../../components/atoms/ImageUpload"
 import Input from "../../components/atoms/Input"
 import SelectInput from "../../components/atoms/Select"
 import Tags from "../../components/atoms/Tags"
 import Ingredients from "../../components/molecules/Ingredients"
+import MarkdownPreview from "../../components/molecules/MarkdownPreview"
 import Form from "../../components/organisms/Form"
 import Layout from "../../components/organisms/Layout"
 import { newRecipeState } from '../../lib/recoil/recoilRecipes'
@@ -28,27 +30,28 @@ const AddRecipe = (): JSX.Element => {
           <h2>Basic</h2>
           <Input name='title' stateAtom={newRecipeState} placeholder='Title'/>
           <Input name='description' stateAtom={newRecipeState} placeholder='Description' type='textarea' />
+
           <SelectInput 
             identifier='menu' 
             values={['Breakfast','Lunch', 'Dinner', 'Supper', 'Snack', 'Suplement']}
             stateAtom={newRecipeState}
           />
-          <input placeholder='Tags - ex. vegan, paleo, etc.' />
+
           <Tags />
         </div>
 
         <div>
           <h2>Picture</h2>
-          <input placeholder='Picture url' />
+          <ImageUpload />
         </div>
 
         <Ingredients />
 
-        <div>
-          <h2>Instructions</h2>
+        <h2>Instructions</h2>
+        <MarkdownPreview>
           <input placeholder='Add Ingredient' />
           <input placeholder='Add Header' />
-        </div>
+        </MarkdownPreview>
 
         <div>
           <h2>Other</h2>

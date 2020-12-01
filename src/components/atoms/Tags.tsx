@@ -48,7 +48,8 @@ const Tags = () => {
           return (
             <li key={tag+idx}>
               {tag}
-              <button type='button' id={tag} onClick={removeTag}>X</button>
+              {/* type=button prevents click event being triggered from inputs 'enter' key down */}
+              <button type='button' id={tag} onClick={removeTag}>X</button> 
             </li>
           )
         })}
