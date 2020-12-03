@@ -1,53 +1,43 @@
-import { useState } from "react"
-import Preview from "../atoms/Preview"
+import { useEffect } from "react"
 
-const MarkdownPreview = ({children}): JSX.Element => {
-  const [state, updateState] = useState({
-    currentHeader: '',
-    markdown: {
-      // header: [step1, step2,step3]
-    }
+const placeholder = {
+  'Header 1': [
+    'step1', 'step2', 'step3'
+  ],
+  'Header2': ['step1']
+}
+
+const MarkdownPreview = ({markdown, remove}): JSX.Element => {
+  let preview  = Object.entries(placeholder).map(([key, arr])=> {
+    return (
+      <div>
+        <h3>{key}<button type='button' name={key} onClick={remove}>X</button></h3>
+        <ul>
+          {arr.map((step, i)=> <li key={step+i}>{step}<button type='button' name={key+'|'+i} onClick={remove}>X</button></li>)}
+        </ul>
+      </div>
+    )
   })
-
-  const handleChange = (e) => {
-    const {name, value} = e.target
-  }
-
-  const addHeader = (e) => {
-    const {value} = e.target
-    e.target.value = ''
-    updateState({...state, currentHeader: value})
-  }
-
-  const addStep = (e) => {
-    const {name, value} = e.target
-    const update = {...state.markdown}
-    update[name] = update[name] ? [...update[name], value] : [value]
-    console.log(update)
-  }
-
+  useEffect(()=>{
+    preview = Object.entries(placeholder).map(([key, arr])=> {
+      return (
+        <div>
+          <h3>{key}</h3>
+          <ul>
+            {arr.map((step, i)=> <li key={step+i}>{step} <button>X</button></li>)}
+          </ul>
+        </div>
+      )
+    })
+  }, [])
   return (
     <div>
-      <Preview markdown={state.markdown} />
-      
-      {/* {children} */}
-
-      <input 
-        name='header'
-        id='header'
-        placeholder='Add header - i.e. Sauce'
-        onChange={addHeader}
-      />
-      <button>Add New Header</button>
-
-      <textarea 
-        name='text'
-        placeholder='Specify instruction step - i.e. Mix everything together'
-      />
-
-      <button type='button' onClick={addStep()}>Add Step</button>
+      This is markdown preview
+      {preview}
     </div>
   )
 }
+
+const Remove = ({remove}) => (<button onClick={remove}>X</button>)
 
 export default MarkdownPreview
