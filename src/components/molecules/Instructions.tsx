@@ -9,7 +9,7 @@ const initialState = {
   ]
 }
 
-const Instructions = () => {
+const Instructions = (): JSX.Element => {
   //const [{instructions, headers}, updateState] = useRecoilState(newRecipeState)
   
   const [list, setList] = useState(initialState)
@@ -46,6 +46,7 @@ const Instructions = () => {
 
   return (
     <div>
+      <h2>Instructions</h2>
       {Object.entries(list).map(([header, steps], i): JSX.Element=> 
         <List key={'instruction-list-'+i} header={header} steps={steps} removeHeader={removeHeader} removeStep={removeStep} />  
       )}

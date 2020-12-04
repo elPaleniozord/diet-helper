@@ -14,9 +14,13 @@ const SelectInput = ({identifier, values, stateAtom, multi=false}) => {
     })
   }
   return (
-    <select name={identifier} onChange={handleChange} value={state[identifier]} multiple={!!multi}>
-      {options}
-    </select>
+    <>
+      <label htmlFor={identifier}></label>
+      <select name={identifier} onChange={handleChange} value={state[identifier]} multiple={!!multi}>
+        {options}
+      </select>
+    </>
+    
   )
 }
 

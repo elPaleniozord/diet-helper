@@ -10,6 +10,7 @@ const ImageUpload = () => {
 
   return (
     <div>
+      <h2>Picture</h2>
       <img src={url} />
       <label>Image url</label>
       <input onChange={fetchPreview} placeholder='Enter img url' />

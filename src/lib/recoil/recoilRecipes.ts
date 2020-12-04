@@ -1,6 +1,6 @@
 import {atom, selector} from 'recoil'
 
-const defaults = {
+const newRecipe = {
   tags: [],
   input: '',
   header: '',
@@ -24,5 +24,5 @@ const defaults = {
 
 export const newRecipeState = atom({
   key: 'newRecipe',
-  default: defaults
+  default: newRecipe
 })
